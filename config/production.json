@@ -1,0 +1,15 @@
+{
+	"api": {
+		"port": "API_PORT"
+	},
+	"db": {
+		"host": "DB_HOST",
+		"port": "DB_PORT",
+		"username": "DB_USERNAME",
+		"password": "DB_PASSWORD",
+		"database": "DB_NAME",
+		"synchronize": "DB_SYNCHRONIZE",
+		"logging": "DB_LOGGING",
+		"runMigrations": "DB_RUN_MIGRATIONS"
+	}
+}

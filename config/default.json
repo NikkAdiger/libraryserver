@@ -1,0 +1,15 @@
+{
+	"api": {
+		"port": 3010
+	},
+	"db": {
+		"host": "localhost",
+		"port": 5432,
+		"username": "admin",
+		"password": "admin",
+		"database": "library",
+		"synchronize": false,
+		"logging": true,
+		"runMigrations": true
+	}
+}
