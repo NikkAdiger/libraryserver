@@ -25,10 +25,12 @@ export default class BookRepository {
 	}> {
 		const offset = (page - 1) * limit;
 
+		const joinConditions: string[] = [];
 		const whereConditions: string[] = [];
 		const queryParams: any[] = [];
 
 		if (userId) {
+			joinConditions.push(`LEFT JOIN book_user ON book.id = book_user.book_id`);
 			whereConditions.push(`book_user.user_id = $${queryParams.length + 1}`);
 			queryParams.push(userId);
 		}
@@ -38,12 +40,13 @@ export default class BookRepository {
 			queryParams.push(`%${search}%`, `%${search}%`);
 		}
 
+		const joinClause = joinConditions.length > 0 ? `${joinConditions.join(' ')}` : '';
 		const whereClause = whereConditions.length > 0 ? `WHERE ${whereConditions.join(' AND ')}` : '';
 
 		const dataQuery = `
-			SELECT book_user.user_id, book.*
+			SELECT book.*
 			FROM book
-			LEFT JOIN book_user ON book.id = book_user.book_id
+			${joinClause}
 			${whereClause}
 			LIMIT $${queryParams.length + 1} OFFSET $${queryParams.length + 2}
 		`;
@@ -56,7 +59,7 @@ export default class BookRepository {
 		const countQuery = `
 			SELECT COUNT(*)::int AS total
 			FROM book
-			LEFT JOIN book_user ON book.id = book_user.book_id
+			${joinClause}
 			${whereClause}
 		`;
 

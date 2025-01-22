@@ -1,4 +1,4 @@
-import { IsString, IsOptional, IsEnum, IsNumber } from 'class-validator';
+import { IsString, IsOptional, IsEnum, IsNumber, Min, Max } from 'class-validator';
 import { BookStatus } from '../../../types/enums';
 
 export class BookDto {
@@ -52,6 +52,8 @@ export class UpdateRatingDto {
 	bookId: string;
 
 	@IsNumber()
+	@Min(1, { message: 'Rating must be at least 1' })
+	@Max(10, { message: 'Rating must not exceed 10' })
 	rating: number;
 }
 
