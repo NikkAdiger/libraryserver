@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
-// import { ConfigService } from '@nestjs/config';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule);
@@ -15,11 +15,9 @@ async function bootstrap() {
 
 	app.enableCors();
 
-	// const configService = await app.resolve(ConfigService);
+	const configService = await app.resolve(ConfigService);
 
-	// const port = configService.get('api.port');
-
-	const port = process.env.API_PORT;
+	const port = configService.get('api.port');
 
 	await app.listen(port);
 	console.log(`Server listening on http://localhost:${port}`);

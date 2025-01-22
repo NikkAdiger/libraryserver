@@ -26,7 +26,7 @@ export class UserDto {
 
 export class CreateUserDto extends UserDto {
 	@IsString()
-	nikName: string;
+	userName: string;
 }
 
 export class UpdateUserDto extends UserDto {
@@ -35,5 +35,5 @@ export class UpdateUserDto extends UserDto {
 
 	@IsString()
 	@IsOptional()
-	nikName: string;
+	userName: string;
 }

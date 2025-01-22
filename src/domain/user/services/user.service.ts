@@ -11,7 +11,7 @@ export class UserService {
 
 	async create(createUserDto: CreateUserDto) {
 		const userEntity: Omit<UserEntity, 'id' | 'createdAt' | 'updatedAt'> = {
-			nikName: createUserDto.nikName,
+			userName: createUserDto.userName,
 			firstName: createUserDto.firstName || null,
 			lastName: createUserDto.lastName || null,
 			password: createUserDto.password || null,
@@ -55,8 +55,8 @@ export class UserService {
 	private getUpdatedArgs(updateUserDto: UpdateUserDto): Partial<UserEntity> {
 		const updatedArgs: Partial<UserEntity> = {};
 
-		if (updateUserDto.nikName !== undefined) {
-			updatedArgs.nikName = updateUserDto.nikName;
+		if (updateUserDto.userName !== undefined) {
+			updatedArgs.userName = updateUserDto.userName;
 		}
 
 		if (updateUserDto.firstName !== undefined) {

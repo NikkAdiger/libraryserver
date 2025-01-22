@@ -1,21 +1,20 @@
 import {
 	Entity,
-	PrimaryGeneratedColumn,
+	PrimaryColumn,
 	Column,
 	CreateDateColumn,
 	UpdateDateColumn,
-	OneToMany,
-  } from 'typeorm';
-import { BookUserEntity } from '../../book/entities/bookUser.entity';
+} from 'typeorm';
+import { v4 as uuid } from 'uuid';
 import { UserStatus } from '../../../types/enums';
 
 @Entity('user')
 export class UserEntity {
-	@PrimaryGeneratedColumn('uuid')
+	@PrimaryColumn({ type: 'varchar', default: uuid() })
 	id: string;
 
-	@Column({ type: 'varchar', name: 'nik_name', unique: true })
-	nikName: string;
+	@Column({ type: 'varchar', name: 'user_name', unique: true })
+	userName: string;
 
 	@Column({ type: 'varchar', name: 'first_name', nullable: true })
 	firstName: string;

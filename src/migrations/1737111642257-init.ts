@@ -9,12 +9,12 @@ export class init1737111642257 implements MigrationInterface {
       CREATE TYPE "book_status_enum" AS ENUM('READ', 'READING', 'WANT_TO_READ');
 
       CREATE TABLE "user" (
-        "id" uuid NOT NULL DEFAULT gen_random_uuid(),
-        "nik_name" character varying NOT NULL,
-        "first_name" character varying,
-        "last_name" character varying,
-        "password" character varying,
-        "email" character varying,
+        "id" varchar NOT NULL,
+        "user_name" varchar NOT NULL,
+        "first_name" varchar,
+        "last_name" varchar,
+        "password" varchar,
+        "email" varchar,
         "status" user_status_enum NOT NULL DEFAULT 'ACTIVE',
         "created_at" TIMESTAMP NOT NULL DEFAULT now(),
         "updated_at" TIMESTAMP NOT NULL DEFAULT now(),
@@ -22,11 +22,11 @@ export class init1737111642257 implements MigrationInterface {
       );
 
       CREATE TABLE "book" (
-        "id" uuid NOT NULL DEFAULT gen_random_uuid(),
-        "title" character varying NOT NULL,
-        "author" character varying NOT NULL,
+        "id" varchar NOT NULL,
+        "title" varchar NOT NULL,
+        "author" varchar NOT NULL,
         "year" int,
-        "genre" character varying,
+        "genre" varchar,
         "status" book_status_enum,
 		"average_rating" DECIMAL(3, 2) DEFAULT 0,
         "created_at" TIMESTAMP NOT NULL DEFAULT now(),
@@ -37,8 +37,8 @@ export class init1737111642257 implements MigrationInterface {
 
       CREATE TABLE "book_user" (
         "id" BIGSERIAL PRIMARY KEY,
-        "book_id" uuid NOT NULL REFERENCES "book" ("id") ON DELETE CASCADE,
-        "user_id" uuid NOT NULL REFERENCES "user" ("id") ON DELETE CASCADE,
+        "book_id" varchar NOT NULL REFERENCES "book" ("id") ON DELETE CASCADE,
+        "user_id" varchar NOT NULL REFERENCES "user" ("id") ON DELETE CASCADE,
 		"user_rating" INT CHECK (user_rating >= 1 AND user_rating <= 10),
 		"created_at" TIMESTAMP NOT NULL DEFAULT now(),
         "updated_at" TIMESTAMP NOT NULL DEFAULT now(),

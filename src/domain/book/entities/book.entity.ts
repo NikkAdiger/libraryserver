@@ -1,17 +1,18 @@
 import {
 	Entity,
-	PrimaryGeneratedColumn,
+	PrimaryColumn,
 	Column,
 	CreateDateColumn,
 	UpdateDateColumn,
 	Unique,
-  } from 'typeorm';
+} from 'typeorm';
+import { v4 as uuid } from 'uuid';
 import { BookStatus } from '../../../types/enums';
 
 @Entity('book')
 @Unique(['title', 'author'])
 export class BookEntity {
-	@PrimaryGeneratedColumn('uuid')
+	@PrimaryColumn({ type: 'varchar', default: uuid() })
 	id: string;
 
 	@Column({ type: 'varchar' })
