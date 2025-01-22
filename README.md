@@ -44,14 +44,13 @@ DB_NAME: Default library.
 
 docker compose up
 
-/app
-  ├── /server
-  │    ├── /dist          # Compiled application
-  │    ├── /src           # Application source code
-  │    ├── Dockerfile      # Docker build configuration
-  │    ├── ormconfig.js    # TypeORM database configuration
-  │    ├── package.json    # Node.js dependencies
-  │    └── docker-compose.yml # Container orchestration
+/server
+  │── /dist          # Compiled application
+  │── /src           # Application source code
+  │── Dockerfile      # Docker build configuration
+  │── ormconfig.js    # TypeORM database configuration
+  │── package.json    # Node.js dependencies
+  │── docker-compose.yml # Container orchestration
   └── README.md
 
 Docker Compose Services
