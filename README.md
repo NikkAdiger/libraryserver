@@ -24,7 +24,7 @@ This project is a Node.js application that uses NestJS for the server and Postgr
 
 ### 1. Clone the Repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/NikkAdiger/libraryserver.git
 
 2. Configure Environment Variables
 Edit compose.yml file to update any environment variables:
