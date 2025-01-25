@@ -65,6 +65,16 @@ export class BooksService {
 		return await this.bookRepository.findOne(id);
 	}
 
+	async delete(id: string) {
+		const existingBook = await this.bookRepository.findOne(id);
+
+		if (!existingBook) {
+			throw new NotFoundException(`Book with ID ${id} not found`);
+		}
+
+		return await this.bookRepository.delete(id);
+	}
+
 	async findOneByTitleAndAuthor(title: string, author:string) {
 		return await this.bookRepository.findOneByTitleAndAuthor(title, author);
 	}

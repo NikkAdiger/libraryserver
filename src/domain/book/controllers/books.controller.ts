@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, Delete, Query } from '@nestjs/common';
 import { BooksService } from '../services/books.service';
 import Constants from '../../../types/constants';
 import { AddBookToUserDto, CreateBookDto, UpdateBookDto, UpdateRatingDto } from '../dto/book.dto';
@@ -45,5 +45,10 @@ export class BooksController {
 	@Patch('ratings')
 	updateRating(@Body() updateRatingDto: UpdateRatingDto) {
 		return this.bookService.updateRating(updateRatingDto);
+	}
+
+	@Delete(':id')
+	delete (@Param('id') id: string) {
+		return this.bookService.delete(id);
 	}
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BookEntity } from '../entities/book.entity';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import { BookUserEntity } from '../entities/bookUser.entity';
 import { IGetAllBooks } from '../types/interfaces';
@@ -75,6 +75,11 @@ export default class BookRepository {
 
 	async findOne(id: string): Promise<BookEntity> {
 		return this.bookEntityRepository.findOne({ where: { id } });
+	}
+
+	async delete(id: string): Promise<{ id: string, status: boolean}> {
+		const result = await this.bookEntityRepository.delete({ id });
+		return { id, status: result.affected === 1 };
 	}
 
 	async findOneByTitleAndAuthor(title: string, author:string): Promise<BookEntity> {
